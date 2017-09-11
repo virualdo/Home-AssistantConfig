@@ -1,0 +1,5 @@
+name: Casa de Pedro
+latitude: !secret peter_lat
+longitude: !secret peter_lon
+radius: 50
+icon: mdi:human-male

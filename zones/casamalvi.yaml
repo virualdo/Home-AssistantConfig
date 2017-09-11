@@ -1,0 +1,5 @@
+name: Casa de Malvi
+latitude: !secret mal_lat
+longitude: !secret mal_lon
+radius: 50
+icon: mdi:human-female

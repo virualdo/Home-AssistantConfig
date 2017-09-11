@@ -1,0 +1,16 @@
+www
+bk
+home-assistant.log
+home-assistant_v2.db
+deps
+tts
+secrets.yaml
+plex.conf
+.uuid
+.spotify-token-cache
+.google.token
+.HA_VERSION
+typescript
+custom_components
+**/salida
+**/dropbox

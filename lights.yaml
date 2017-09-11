@@ -1,0 +1,16 @@
+  - platform: yeelight
+    automatic_add: False
+    devices: 
+      !secret lpas_ip:
+         name: Luz Pasillo
+         transition: 600
+      !secret lbib_ip:
+         name: Luz Biblioteca
+         transition: 600
+         use_music_mode: True
+      !secret lcom_ip:
+         name: Luz Comedor
+         transition: 600
+      !secret lliv_ip:
+         name: Luz Living
+         transition: 600

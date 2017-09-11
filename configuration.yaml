@@ -1,0 +1,144 @@
+homeassistant:
+  name: Casa
+  latitude: !secret home_latitude 
+  longitude: !secret home_longitude
+  elevation: 29
+  unit_system: metric
+  time_zone: America/Argentina/Buenos_Aires
+
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+logger:
+  default: info
+  logs:
+    homeassistant.components: info
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret http_password
+  base_url: !secret base_url
+  ip_ban_enabled: true
+  login_attempts_threshold: 10
+  # Uncomment this if you are using SSL or running in Docker etc
+
+updater:
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.date
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor: !include sensors.yaml
+
+# Text to speech
+tts:
+  platform: google
+  language: 'es'
+
+telegram_bot:
+  platform: broadcast
+  api_key: !secret telegram_api
+  allowed_chat_ids:
+    - !secret telegram_chat_bel
+    - !secret telegram_chat_gus
+
+group: !include groups.yaml
+#automation: !include_dir_merge_list automation
+automation: !include automations.yaml
+
+
+xiaomi:
+  gateways:
+    - sid: !secret xiaomi_sid
+      key: !secret xiaomi_key
+
+google:
+  client_id: !secret google_cid
+  client_secret: !secret google_secret
+
+media_player:  !include_dir_merge_list mediaplayers
+
+light: !include lights.yaml
+
+zone: !include_dir_list zones
+
+ifttt:
+  key: !secret ifttt_key
+
+notify: !include notify.yaml
+
+input_slider:
+  xiaomi_ringtone_volume:
+    initial: 10
+    min: 1
+    max: 100
+    step: 1
+
+input_select: !include input_select.yaml
+
+script: !include scripts.yaml
+
+scene: !include scenes.yaml
+
+camera: !include cameras.yaml
+
+# Device Tracker
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: !secret ddwrt_usr
+    password: !secret ddwrt_pwd
+  - platform: bluetooth_tracker
+#  - platform: bluetooth_le_tracker
+  - platform: gplus
+    id: gusplus
+    url: !secret gusplus_url
+    cookie_sid: !secret gusplus_sid
+    cookie_hsid: !secret gusplus_hsid
+    cookie_ssid: !secret gusplus_ssid
+    data_freq: !secret gusplus_freq
+    home_url: !secret gusplus_home
+  - platform: gplus
+    id: belplus
+    url: !secret belplus_url
+    cookie_sid: !secret belplus_sid
+    cookie_hsid: !secret belplus_hsid
+    cookie_ssid: !secret belplus_ssid
+    data_freq: !secret belplus_freq
+    home_url: !secret belplus_home
+    interval: !!int 1
+
+switch: !include switchs.yaml
+
+media_extractor:
+  default_query: worst
+  customize:
+    media_player.tele_bg:
+      video: bestvideo
+      music: bestaudio[ext=mp3]
+
+shell_command: !include_dir_merge_named shellcommands

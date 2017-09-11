@@ -1,0 +1,323 @@
+#####################################
+### Utility Scripts
+#################################
+#restart_ha: !include scripts/restart_ha.yaml
+
+#####################################
+### Bedroom Scripts
+#################################
+
+#sleep_machine_on: !include config/scripts/sleep_machine_on.yaml
+
+#sleep_machine_off: !include config/scripts/sleep_machine_off.yaml
+
+#normal_wake: !include config/scripts/normal_wake.yaml
+
+#sleep_in_fin: !include config/scripts/sleep_in_fin.yaml
+
+luz_biblioteca_disco:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.luz_biblioteca
+        effect: colorloop
+        brightness: 254
+        transition: 2
+
+luz_centralita_disco:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.gateway_light_f0b4299aee74
+        effect: colorloop
+        brightness: 254
+        transition: 2
+
+xiaomi_ringtone:
+  sequence:
+    - service: xiaomi.play_ringtone
+      data_template:
+        gw_sid: f0b4299aee74
+        ringtone_vol: "{{ volume|default(states('input_slider.xiaomi_ringtone_volume')|int(100)) }}"
+        ringtone_id: >
+            {% if is_state("input_select.ringtones_xiaomi", "Doorbell") %}
+              10
+            {%-elif is_state("input_select.ringtones_xiaomi", "KnockKnock") %}
+              11
+            {%-elif is_state("input_select.ringtones_xiaomi", "Hilarious") %}
+              12
+            {%-elif is_state("input_select.ringtones_xiaomi", "AlarmClock") %}
+              13
+            {%-elif is_state("input_select.ringtones_xiaomi", "QueHicisteKuro") %}
+              10001
+            {%-elif is_state("input_select.ringtones_xiaomi", "VengaKurito") %}
+              10002
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena1") %}
+              0
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena2") %}
+              1
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena3") %}
+              2
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena4") %}
+              3
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena5") %}
+              4
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena6") %}
+              5
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena7") %}
+              6
+            {%-elif is_state("input_select.ringtones_xiaomi", "Sirena8") %}
+              7
+            {%-elif is_state("input_select.ringtones_xiaomi", "Ladridos") %}
+              8
+            {% else %}
+              10
+            {% endif %}
+
+flash_living:
+  alias: Flash Living On
+  sequence:
+    - alias: Light Living On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_living
+    - delay:
+        # time for flash light on
+        milliseconds: 500
+    - alias: Light Living Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_living
+    - delay:
+        # time for flash light off
+        milliseconds: 500
+    - alias: loop_Living
+      service: script.turn_on
+      data:
+        entity_id: script.flash_living
+
+flash_living2:
+  sequence:
+    - alias: Llamar a 1
+      service: script.turn_off
+      data:
+        entity_id: script.flash_living
+    - alias: Llamar a 1 a
+      service: script.turn_on
+      data:
+        entity_id: script.flash_living
+
+luces_flash:
+  sequence:
+    - alias: Apagar luces
+      service: script.turn_on
+      data:
+        entity_id: script.apagar_todas_las_luces
+    - delay:
+        milliseconds: 100
+    - alias: Pasillo On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_pasillo
+    - delay:
+        milliseconds: 100
+    - alias: Pasillo Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_pasillo
+    - alias: Comedor On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_comedor
+    - delay:
+        # time for flash light on
+        milliseconds: 100
+    - alias: Comedor Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_comedor
+    - alias: Living On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_living
+    - delay:
+        milliseconds: 100
+    - alias: Living Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_living
+    - alias: Mesada On
+      service: homeassistant.turn_on
+      data:
+        entity_id: switch.plug_158d0001011d82
+    - delay:
+        milliseconds: 100
+    - alias: Mesada Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: switch.plug_158d0001011d82
+    - alias: Centralita On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.gateway_light_f0b4299aee74
+    - delay:
+        milliseconds: 100
+    - alias: Centralita Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: switch.gateway_light_f0b4299aee74
+    - alias: Biblioteca On
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_biblioteca
+    - delay:
+        milliseconds: 100
+    - alias: Reiniciar
+      service: script.luces_flash
+    - alias: Biblioteca Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: switch.luz_biblioteca
+
+apagar_todas_las_luces:
+  sequence:
+    - alias: Pasillo Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_pasillo
+    - alias: Comedor Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_comedor 
+    - alias: Living Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_living
+    - alias: Biblioteca Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.luz_biblioteca
+    - alias: Cocina Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: switch.plug_158d0001011d82
+    - alias: Centralita Off
+      service: homeassistant.turn_off
+      data:
+        entity_id: light.gateway_light_f0b4299aee74
+
+modo_netflix:
+  sequence:
+    - alias: Apaga Todo
+      service: script.turn_on
+      data:
+        entity_id: script.apagar_todas_las_luces
+    - delay:
+        # time for flash light on
+        milliseconds: 500
+    - alias: Prende Biblioteca
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_biblioteca
+        color_name: red
+
+modo_kodi:
+  sequence:
+    - alias: Apaga Todo
+      service: script.turn_on
+      data:
+        entity_id: script.apagar_todas_las_luces
+    - delay:
+        # time for flash light on
+        milliseconds: 500
+    - alias: Prende Biblioteca
+      service: homeassistant.turn_on
+      data:
+        entity_id: light.luz_biblioteca
+        color_name: blue
+
+me_voy_de_casa:
+  sequence:
+    - alias: Prende Camaras
+      service: switch.turn_on
+      entity_id: switch.camaras
+    - alias: Spotify al Celu
+      service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: Galaxy S6 edge
+
+reiniciar_camara_kro:
+  sequence:
+    - alias: Reboot camKro
+      service: shell_command.restart_camkro
+
+reiniciar_camara_entrada:
+  sequence:
+    - alias: Reboot camentrada
+      service: shell_command.restart_camentrada
+
+reiniciar_camara_living:
+  sequence:
+    - alias: Reboot camliving
+      service: shell_command.restart_camliving
+
+poner_radio:
+    alias: Reproducir Radio en Chromecast 
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.tele_caro
+          volume_level: '0.80'
+      -  service: media_player.volume_set
+         data:
+           entity_id: media_player.tele_bg
+           volume_level: '0.80'
+      -  service: media_player.play_media
+         data_template:
+           entity_id: >
+            {% if is_state("input_select.chromecast_radio", "Tele Bg") %} media_player.tele_bg
+            {% elif is_state("input_select.chromecast_radio", "Tele Caro") %} media_player.tele_caro
+            {% elif is_state("input_select.chromecast_radio", "Todos") %} media_player.home_group
+            {% endif %}
+           media_content_id: >
+            {% if is_state("input_select.radio_station", "Metro 95.1") %} http://mp3.metroaudio1.stream.avstreaming.net:7200/metro
+            {% elif is_state("input_select.radio_station", "Vorterix") %} rtsp://r20057.smi.vmf.edge-apps.net/magma-apps/vorterix_radio1_high
+            {% elif is_state("input_select.radio_station", "Blue") %} http://mp3.metroaudio1.stream.avstreaming.net:7200/bluefmaudio1
+            {% endif %}
+           media_content_type: 'audio/mp4'
+
+despertar_caro:
+  alias: Despertar con la tele a Caro
+  sequence:
+  - service: media_player.turn_on
+    data:
+      entity_id: media_player.tele_caro
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.tele_caro
+      volume_level: '0.99'
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.tele_caro
+      media_content_id: https://previews.123rf.com/images/amalga/amalga1512/amalga151200013/50640552-La-linda-chica-se-despierta-Ilustraci-n-vectorial-de-dibujos-animados-Aislado-en-blanco--Foto-de-archivo.jpg
+      media_content_type: image/jpeg
+  - delay: '00:00:30'
+  - service: tts.google_say
+    entity_id: media_player.tele_caro
+    data:
+      message: 'Buenos dias Carolina, arriba que es hora de despertarse.'
+      language: es
+  - delay: '00:00:30'
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.tele_caro
+      media_content_id: https://previews.123rf.com/images/amalga/amalga1512/amalga151200013/50640552-La-linda-chica-se-despierta-Ilustraci-n-vectorial-de-dibujos-animados-Aislado-en-blanco--Foto-de-archivo.jpg
+      media_content_type: image/jpeg
+
+#hacer_gif_entrada:
+#  alias: Hacer gif animado con x imagenes por segundo de la camara de la entrada
+#  sequence:
+#  - service: 
+#    data:
+#      entity_id: media_player.tele_caro

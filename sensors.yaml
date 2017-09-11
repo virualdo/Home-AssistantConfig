@@ -1,0 +1,37 @@
+  - platform: yr
+#  - platform: cpuspeed
+  - platform: darksky
+    api_key: !secret darksky_ak
+    monitored_conditions:
+      - summary
+      - temperature
+      - humidity
+      - summary
+      - apparent_temperature
+      - temperature_max
+      - temperature_min
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - precip_intensity_max
+  - platform: template
+    sensors:
+      tele_living_entrada:
+        value_template: '{{ states.media_player.tele_living.attributes["source"] }}'
+        friendly_name: 'Entrada Tele Living'
+  - platform: systemmonitor
+    resources:
+      - type: memory_free
+      - type: processor_use
+      - type: last_boot
+      - type: since_last_boot
+  - platform: time_date
+    display_options:
+      - time
+  - platform: speedtest
+    minute:
+      - 0
+      - 30
+    monitored_conditions:
+      - ping
+      - download
+      - upload

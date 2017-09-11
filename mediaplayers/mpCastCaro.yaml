@@ -1,0 +1,3 @@
+  - platform: cast
+    host: !secret cckr_ip
+    name: Tele Caro

@@ -1,0 +1,3 @@
+  - platform: cast
+    host: !secret ccbg_ip
+    name: Tele BG

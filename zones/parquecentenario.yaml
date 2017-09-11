@@ -1,0 +1,5 @@
+name: Parque Centenario
+latitude: !secret pqec_lat
+longitude: !secret pqec_lon
+radius: 250
+icon: mdi:tree

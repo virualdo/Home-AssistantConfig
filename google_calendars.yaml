@@ -1,0 +1,90 @@
+
+- cal_id: virualdo@gmail.com
+  entities:
+  - device_id: virualdogmailcom
+    name: virualdo@gmail.com
+    track: true
+
+- cal_id: uta23lck4vgkmnsbkvg2dmmsfs@group.calendar.google.com
+  entities:
+  - device_id: gus_compartido
+    name: Gus Compartido
+    track: true
+
+- cal_id: gustavo.bianco@hospitalitaliano.org.ar
+  entities:
+  - device_id: gustavobiancohospitalitalianoorgar
+    name: gustavo.bianco@hospitalitaliano.org.ar
+    track: true
+
+- cal_id: mbmbline@gmail.com
+  entities:
+  - device_id: mbmblinegmailcom
+    name: mbmbline@gmail.com
+    track: true
+
+- cal_id: s0aepk61ntkdutqnfce8pj91f8@group.calendar.google.com
+  entities:
+  - device_id: cumpleanos_hi
+    name: "Cumplea\xF1os HI"
+    track: true
+
+- cal_id: id3n92ra7en46qmaq523rhsol0@group.calendar.google.com
+  entities:
+  - device_id: fohma
+    name: FOHMA
+    track: true
+
+- cal_id: n7mfmeg0vt5i8stt7q62t2mttk@group.calendar.google.com
+  entities:
+  - device_id: sum
+    name: SUM
+    track: true
+
+- cal_id: q8tnj0e219mnr4fhq5n9tj9gantg8t7h@import.calendar.google.com
+  entities:
+  - device_id: gustavo_biancos_facebook_events
+    name: Gustavo Bianco's Facebook Events
+    track: true
+
+- cal_id: gbianco@fohma.com.ar
+  entities:
+  - device_id: gbiancofohmacomar
+    name: gbianco@fohma.com.ar
+    track: true
+
+- cal_id: psnmblmbogte9ohfhij0kjiebc@group.calendar.google.com
+  entities:
+  - device_id: feriados_argentina
+    name: Feriados Argentina
+    track: true
+
+- cal_id: on4t86heon6tbr2mldhqglb564@group.calendar.google.com
+  entities:
+  - device_id: auto
+    name: Auto
+    track: true
+
+- cal_id: fmt8vpd1mfijojs8dkmpm6che0@group.calendar.google.com
+  entities:
+  - device_id: hi
+    name: HI
+    track: true
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: es.ar#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: festivos_en_argentina
+    name: Festivos en Argentina
+    track: true
+
+- cal_id: arge_7251_%42oca+%4auniors#sports@group.v.calendar.google.com
+  entities:
+  - device_id: boca_juniors
+    name: Boca Juniors
+    track: true

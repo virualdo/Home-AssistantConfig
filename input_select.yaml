@@ -1,0 +1,23 @@
+  radio_station:
+    name: 'Select Radio Station:'
+    options:
+      - Metro 95.1
+      - Vorterix
+      - Blue
+  ringtones_xiaomi:
+    name: Ringtones Xiaomi
+    options:
+      - Doorbell
+      - QueHicisteKuro
+      - VengaKurito
+      - Ladridos
+      - KnockKnock
+
+  chromecast_radio:
+    name: 'Select Speakers:'
+    options:
+      - Tele Bg
+      - Tele Caro
+      - Todos
+    initial: Todos
+    icon: mdi:speaker-wireless

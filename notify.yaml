@@ -1,0 +1,9 @@
+  - name: telegram_gus
+    platform: telegram
+    chat_id: !secret telegram_chat_gus
+  - name: telegram_bel
+    platform: telegram
+    chat_id: !secret telegram_chat_bel
+  - platform: webostv
+    host: !secret lgtv_ip
+    name: Tele Living

@@ -1,0 +1,5 @@
+name: Nichia
+latitude: !secret nichia_lat
+longitude: !secret nichia_lon
+radius: 100
+icon: mdi:school

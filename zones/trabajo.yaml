@@ -1,0 +1,5 @@
+name: Trabajo
+latitude: !secret hi_lat
+longitude: !secret hi_lon
+radius: 150
+icon: mdi:hospital-building

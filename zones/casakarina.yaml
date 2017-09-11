@@ -1,0 +1,5 @@
+name: Casa de Karina
+latitude: !secret kar_lat
+longitude: !secret kar_lon
+radius: 50
+icon: mdi:human-female

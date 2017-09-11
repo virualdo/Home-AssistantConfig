@@ -1,0 +1,40 @@
+  binary_sensor.cube_158d0001106359:
+    friendly_name: Cubo Blanco
+    hidden: true
+  binary_sensor.cube_158d00011190a0:
+    friendly_name: Cubo Azul
+    hidden: true
+  binary_sensor.door_window_sensor_158d0001012257:
+    friendly_name: Sensor Ventanal Balcon
+  binary_sensor.door_window_sensor_158d0001012263:
+    friendly_name: Sensor Puerta Ppal
+  binary_sensor.motion_sensor_158d0000e7c149:
+    friendly_name: Sensor Pasillo
+  binary_sensor.motion_sensor_158d0000fc1838:
+    friendly_name: Sensor Cocina
+  binary_sensor.motion_sensor_158d00010d4be4:
+    friendly_name: Sensor Habitación BG
+  binary_sensor.motion_sensor_158d0001103866:
+    friendly_name: Sensor Living
+  binary_sensor.motion_sensor_158d00011039fc:
+    friendly_name: Sensor Baño
+  binary_sensor.motion_sensor_158d0000fbf0e1:
+    friendly_name: Sensor Patio
+  binary_sensor.switch_158d0001050c4e:
+    friendly_name: Boton Pasillo
+    hidden: true
+  binary_sensor.switch_158d00010f24f6:
+    friendly_name: Boton Comedor
+    hidden: true
+  switch.plug_158d0001011d82:
+    friendly_name: Luz Mesada Cocina
+  switch.plug_158d00012f54bf:
+    friendly_name: Luz Baño
+  light.gateway_light_f0b4299aee74:
+    friendly_name: Luz Centralita
+  sensor.temperature_158d00010e1a8a:
+    friendly_name: Temperatura
+  sensor.humidity_158d00010e1a8a:
+    friendly_name: Humedad
+  input_slider.xiaomi_ringtone_volume:
+      friendly_name: Vol Ringtone Centralita

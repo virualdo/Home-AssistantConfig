@@ -1,0 +1,657 @@
+SGS6:
+  hide_if_away: false
+  mac: !secret sgs6_mac
+  name: SGS6
+  picture: !secret gus_photo
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+Belen:
+  hide_if_away: false
+  mac: !secret lgg5_mac
+  name: Belen
+  picture: !secret bel_photo
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+PhilipsTV:
+  hide_if_away: true
+  mac: !secret phtv_mac
+  name: PhilipsTV
+  picture:
+  track: false
+  vendor: Alpha Networks Inc.
+
+KroCam:
+  hide_if_away: true
+  mac: !secret krocam_mac
+  name: KroCam
+  picture:
+  track: false
+  vendor: LG Electronics (Mobile Communications)
+
+Caro:
+  hide_if_away: false
+  mac: !secret aeee_mac
+  name: Caro
+  picture: !secret caro_photo
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+3cbbfde79243:
+  hide_if_away: true
+  mac: 3C:BB:FD:E7:92:43
+  name: 3cbbfde79243
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+Netbook Caro:
+  hide_if_away: true
+  mac: 48:5D:60:10:88:5E
+  name: Netbook Caro
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+ultraguspc:
+  hide_if_away: false
+  mac: !secret ultra_mac
+  name: UltraGus-PC
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+Paulina2:
+  hide_if_away: false
+  mac: !secret pau_mac
+  name: Paulina
+  picture:
+  track: false
+  vendor: BlackBerry RTS
+
+Celu Caro:
+  hide_if_away: false
+  mac: !secret lg1mac
+  name: Celu Caro
+  picture:
+  track: true
+  vendor: unknown
+
+CamaraKro:
+  hide_if_away: false
+  mac: !secret camkro_mac
+  name: CamaraKro
+  picture:
+  track: false
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+CamaraEntrada:
+  hide_if_away: false
+  mac: !secret cament_mac
+  name: CamaraEntrada
+  picture:
+  track: false
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+ChromeCastBG:
+  hide_if_away: false
+  mac: !secret ccbg_mac
+  name: ChromeCastBG
+  picture:
+  track: false
+  vendor: unknown
+
+Paulina:
+  hide_if_away: true
+  mac: !secret pau2_mac
+  name: Paulina
+  track: true
+  picture: http://www.ludmilagurchenco.com.ar/files/robotina.jpg
+  vendor: Motorola Mobility LLC, a Lenovo Company
+
+camliving:
+  hide_if_away: false
+  mac: !secret camliv_mac
+  name: CamLiving
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+telebg:
+  hide_if_away: false
+  mac: !secret bgtv_mac
+  name: TeleBG
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+luzliving:
+  hide_if_away: false
+  mac: !secret lliv_mac
+  name: LuzLiving
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+luzcomedor:
+  hide_if_away: false
+  mac: !secret lcom_mac
+  name: LuzComedor
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+luzpasillo:
+  hide_if_away: false
+  mac: !secret lpas_mac
+  name: LuzPasillo
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+zimipowerstripv2_miio13622723:
+  hide_if_away: false
+  mac: !secret zim1_mac
+  name: zimi-powerstrip-v2 miio13622723
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+chuangmiirv2_miio13619353:
+  hide_if_away: false
+  mac: !secret cir1_mac
+  name: chuangmi-ir-v2 miio13619353
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+centralita:
+  hide_if_away: false
+  mac: !secret gwy_mac
+  name: Centralita
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+luzbiblioteca:
+  hide_if_away: false
+  mac: !secret lbib_mac
+  name: LuzBiblioteca
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+telecaro:
+  hide_if_away: false
+  mac: !secret cck_mac
+  name: TeleCaro
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+gusplus:
+  hide_if_away: false
+  mac:
+  name: gusplus
+  picture: !secret gus_photo
+  track: true
+  vendor:
+
+belplus:
+  hide_if_away: false
+  mac:
+  name: belplus
+  picture: !secret bel_photo
+  track: true
+  vendor:
+
+6045bd31f35f:
+  hide_if_away: false
+  icon:
+  mac: 60:45:BD:31:F3:5F
+  name: '*'
+  picture:
+  track: true
+  vendor: Microsoft
+
+Gustavo:
+  hide_if_away: false
+  icon:
+  mac: !secret lgg6_mac
+  name: Gustavo
+  picture: !secret gus_photo
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+lgsmarttv:
+  hide_if_away: false
+  icon:
+  mac: !secret lgtv_mac
+  name: LGSmartTV
+  picture:
+  track: true
+  vendor: LG Innotek
+
+g6:
+  hide_if_away: false
+  icon:
+  mac: !secret lgg6b_mac
+  name: G6
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+XIAOMI_SPEAKER_BT:
+  hide_if_away: false
+  icon:
+  mac: !secret xiabt_mac
+  name: "Xiaomi BT"
+  picture:
+  track: true
+  vendor: ZIMI CORPORATION
+
+car_multimedia:
+  hide_if_away: false
+  icon:
+  mac: BT_9C:8D:7C:56:69:1E
+  name: CAR MULTIMEDIA
+  picture:
+  track: true
+  vendor: ALPS ELECTRIC CO.,LTD.
+
+peugeot:
+  hide_if_away: false
+  icon:
+  mac: BT_90:03:B7:D7:09:DA
+  name: PEUGEOT
+  picture:
+  track: true
+  vendor: PARROT SA
+
+p1:
+  hide_if_away: false
+  icon:
+  mac: !secret p1b_mac
+  name: P1
+  picture:
+  track: true
+  vendor: unknown
+
+bluetooth_30_macro_keyboard:
+  hide_if_away: false
+  icon:
+  mac: !secret BT_DC:2C:26:D5:56:C4
+  name: Bluetooth 3.0 Macro Keyboard
+  picture:
+  track: true
+  vendor: Iton Technology Limited
+
+001f3c5e2f33:
+  hide_if_away: false
+  icon:
+  mac: 00:1F:3C:5E:2F:33
+  name: 001f3c5e2f33
+  picture:
+  track: true
+  vendor: unknown
+
+hasspi:
+  hide_if_away: false
+  icon:
+  mac: !secert hass_mac
+  name: hasspi
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+g5:
+  hide_if_away: false
+  icon:
+  mac: !secret lgg5b_mac
+  name: G5
+  picture:
+  track: true
+  vendor: unknown
+
+androide15151442ec1a2cf:
+  hide_if_away: false
+  icon:
+  mac: AC:0D:1B:B8:FC:3E
+  name: android-e15151442ec1a2cf
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+philipstv:
+  hide_if_away: false
+  icon:
+  mac: 5C:33:8E:74:E8:6E
+  name: PhilipsTV
+  picture:
+  track: true
+  vendor: Alpha Networks Inc.
+
+luzbiblioteca:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:B8:18:96
+  name: LuzBiblioteca
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+zimipowerstripv2_miio13622723:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:94:E9:5C
+  name: zimi-powerstrip-v2 miio13622723
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+luzpasillo:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A9:09:25
+  name: LuzPasillo
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+centralita:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:9A:EE:74
+  name: Centralita
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+lgsmarttv:
+  hide_if_away: false
+  icon:
+  mac: C4:36:6C:0C:16:3E
+  name: LGSmartTV
+  picture:
+  track: true
+  vendor: LG Innotek
+
+camliving:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:9E:5B:6C
+  name: CamLiving
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+telebg:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:78:99:4F
+  name: TeleBG
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+ctrlremotoliving:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:94:DC:32
+  name: CtrlRemotoLiving
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+camkro:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:9E:17:83
+  name: CamKro
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+android73a849ca3e5ec0bf:
+  hide_if_away: false
+  icon:
+  mac: 50:46:5D:1F:7D:31
+  name: android-73a849ca3e5ec0bf
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+luzliving:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A9:01:96
+  name: LuzLiving
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+luzcomedor:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A8:FE:1F
+  name: LuzComedor
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+b827eb46f8eb:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:46:F8:EB
+  name: '*'
+  picture:
+  track: true
+  vendor: unknown
+
+5cffff950127:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:95:01:27
+  name: '*'
+  picture:
+  track: true
+  vendor: unknown
+
+android8cbb56409fd9823:
+  hide_if_away: false
+  icon:
+  mac: DC:0B:34:C9:24:79
+  name: android-8cbb56409fd9823
+  picture:
+  track: true
+  vendor: unknown
+
+belplus:
+  hide_if_away: false
+  icon:
+  mac:
+  name: belplus
+  picture:
+  track: true
+  vendor:
+
+gusplus:
+  hide_if_away: false
+  icon:
+  mac:
+  name: gusplus
+  picture:
+  track: true
+  vendor:
+
+luzbiblioteca:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:B8:18:96
+  name: LuzBiblioteca
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+philipstv:
+  hide_if_away: false
+  icon:
+  mac: 5C:33:8E:74:E8:6E
+  name: PhilipsTV
+  picture:
+  track: true
+  vendor: Alpha Networks Inc.
+
+telebg:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:78:99:4F
+  name: TeleBG
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+ctrlremotoliving:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:94:DC:32
+  name: CtrlRemotoLiving
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+android73a849ca3e5ec0bf:
+  hide_if_away: false
+  icon:
+  mac: 50:46:5D:1F:7D:31
+  name: android-73a849ca3e5ec0bf
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+zimipowerstripv2_miio13622723:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:94:E9:5C
+  name: zimi-powerstrip-v2 miio13622723
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+camliving:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:9E:5B:6C
+  name: CamLiving
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+5cffff950127:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:95:01:27
+  name: '*'
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+luzpasillo:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A9:09:25
+  name: LuzPasillo
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+androide15151442ec1a2cf:
+  hide_if_away: false
+  icon:
+  mac: AC:0D:1B:B8:FC:3E
+  name: android-e15151442ec1a2cf
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+luzliving:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A9:01:96
+  name: LuzLiving
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+lgsmarttv:
+  hide_if_away: false
+  icon:
+  mac: C4:36:6C:0C:16:3E
+  name: LGSmartTV
+  picture:
+  track: true
+  vendor: LG Innotek
+
+luzcomedor:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:A8:FE:1F
+  name: LuzComedor
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+centralita:
+  hide_if_away: false
+  icon:
+  mac: F0:B4:29:9A:EE:74
+  name: Centralita
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+android8cbb56409fd9823:
+  hide_if_away: false
+  icon:
+  mac: DC:0B:34:C9:24:79
+  name: android-8cbb56409fd9823
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+
+b827eb46f8eb:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:46:F8:EB
+  name: '*'
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+camkro:
+  hide_if_away: false
+  icon:
+  mac: 5C:FF:FF:9E:17:83
+  name: CamKro
+  picture:
+  track: true
+  vendor: Shenzhen Kezhonglong Optoelectronic Technology Co., Ltd
+
+gusplus:
+  hide_if_away: false
+  icon:
+  mac:
+  name: gusplus
+  picture:
+  track: true
+  vendor:
+
+belplus:
+  hide_if_away: false
+  icon:
+  mac:
+  name: belplus
+  picture:
+  track: true
+  vendor:

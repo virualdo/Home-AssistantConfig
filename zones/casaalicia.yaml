@@ -1,0 +1,5 @@
+name: Casa de Alicia
+latitude: !secret ali_lat
+longitude: !secret ali_lon
+radius: 50
+icon: mdi:human-female

@@ -1,0 +1,166 @@
+# Vista Default
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.living
+    - group.comedor
+    - group.cocina
+    - group.pasillo
+    - group.family
+    - group.visitantes
+    - group.banio
+
+#TABS
+familytab:
+  name: Familia
+  icon: mdi:account-multiple
+  view: yes
+  entities:
+    - group.gusdetail
+    - group.beldetail
+    - device_tracker.paulina
+
+sensortab:
+  name: Sensores
+  view: yes
+  icon: mdi:remote
+  entities:
+    - binary_sensor.motion_sensor_158d0000e7c149
+    - binary_sensor.motion_sensor_158d0000fbf0e1
+    - binary_sensor.motion_sensor_158d0000fc1838
+    - binary_sensor.motion_sensor_158d00010d4be4
+    - binary_sensor.motion_sensor_158d0001103866
+    - binary_sensor.motion_sensor_158d00011039fc
+    - sensor.temperature_158d00010e1a8a
+    - sensor.humidity_158d00010e1a8a
+    - binary_sensor.door_window_sensor_158d0001012257
+    - binary_sensor.door_window_sensor_158d0001012263
+
+mediatab:
+  name: Media Players
+  view: yes
+  icon: mdi:play
+  entities:
+    - media_player.spotify
+    - media_player.kodi
+    - media_player.plex
+    - media_player.tele_bg
+    - media_player.tele_caro
+    - media_player.tele_living
+    - group.radio
+
+configurationtab:
+  name: Configuration
+  view: yes
+  icon: mdi:settings
+  entities:
+   - group.hastatus
+   - group.internetstatus
+   - group.reiniciar_camaras
+
+internetstatus:
+  name: Speedtest
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+    - sensor.received_conexion_de_area_local
+    - sensor.sent_conexion_de_area_local
+
+family:
+  - device_tracker.gustavo
+  - device_tracker.belen
+  - device_tracker.caro
+
+visitantes:
+  - device_tracker.paulina
+
+gusdetail:
+    - device_tracker.gustavo
+    - device_tracker.gusplus
+    #- device_tracker.wmxncdlp_gustavo
+    #- sensor.gus_cel_battery
+
+beldetail:
+    - device_tracker.belen
+    - device_tracker.belplus
+    #- device_tracker.wmxncdlp_belen
+    #- sensor.bel_cel_battery
+
+cameratab:
+  name: Cameras
+  view: yes
+  icon: mdi:camera-enhance
+  entities:
+    #- camera.camRTSP
+    - group.camaras1
+    - group.camaras2
+    #- group.control_camaras
+    #- group.controlar_kuro
+
+hastatus:
+  name: "Home Assistant Host Status"
+  entities:
+   - sensor.disk_free_c
+   - sensor.disk_free_d
+   - sensor.disk_free_e
+   - sensor.cpu_use
+   - sensor.ram_free
+   - sensor.disk_free_home
+   - sensor.last_boot
+   - sensor.since_last_boot
+
+Living:
+  - binary_sensor.motion_sensor_158d0001103866
+  - light.luz_living
+  - sensor.tele_living_entrada
+  - sensor.temperature_158d00010e1a8a
+  - binary_sensor.door_window_sensor_158d0001012263
+  - scene.netflix
+
+Comedor:
+  - light.luz_biblioteca
+  - light.luz_comedor
+  - switch.luz_tele
+  - switch.aspiradora
+  - switch.aire_living
+  - switch.ctl_tv_lg
+
+Pasillo:
+  - binary_sensor.door_window_sensor_158d0001012257
+  - binary_sensor.motion_sensor_158d0000e7c149
+  - light.luz_pasillo
+
+Cocina:
+  - binary_sensor.motion_sensor_158d0000fc1838
+  - switch.plug_158d0001011d82
+  - light.gateway_light_f0b4299aee74
+
+Banio:
+  - binary_sensor.motion_sensor_158d00011039fc
+  - switch.plug_158d00012f54bf
+
+Control Kuro:
+  entities:
+    - input_slider.xiaomi_ringtone_volume
+    - input_select.ringtones_xiaomi
+    - script.xiaomi_ringtone
+
+Camaras1:
+  entities:
+    - camera.CamEntrada
+    - camera.CamLiving
+
+Camaras2:
+  entities:
+    - camera.CamKro
+#    - camera.CamSillon
+#    - camera.CamBalcon
+
+Radio:
+  name: Radio
+  entities:
+  - input_select.radio_station
+  - input_select.chromecast_radio
+  - script.poner_radio

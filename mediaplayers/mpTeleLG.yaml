@@ -1,0 +1,8 @@
+  - platform: webostv
+    host: !secret lgtv_ip
+    mac: !secret lgtv_mac
+    name: Tele Living
+    customize:
+      sources:
+        - youtube
+        - Netflix

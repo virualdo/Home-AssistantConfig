@@ -1,0 +1,12 @@
+  - name: Netflix
+    entities:
+      light.living:
+        state: off
+      light.comedor:
+        state: off
+      light.pasillo:
+        state: off
+      light.biblioteca:
+        state: on
+        xy_color: [0.33, 0.66]
+        brightness: 200

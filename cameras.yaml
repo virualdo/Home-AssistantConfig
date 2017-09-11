@@ -1,0 +1,9 @@
+  - platform: generic
+    name: CamLiving
+    still_image_url: !secret camb_url
+  - platform: generic
+    name: CamEntrada
+    still_image_url: !secret came_url
+  - platform: generic
+    still_image_url: !secret camk_url
+    name: CamKro

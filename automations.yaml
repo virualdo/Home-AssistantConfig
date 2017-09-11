@@ -1,0 +1,283 @@
+- alias: Apertura prueba
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001012263
+      to: 'on'
+  action:
+    - service: shell_command.hacergifentrada
+    - delay: '00:00:01'
+    - service: notify.telegram_gus
+      data:
+        title: 'Alerta:'
+        message: 'Se abrio la puerta Ppal.'
+        data:
+          photo:
+            url: !secret came_url
+            caption: 'Se abrio la puerta Ppal.'
+    - delay: '00:01:30'
+    - service: notify.telegram_gus
+      data:
+        message: 'Se abrio la puerta Ppal.'
+        data:
+          document:
+            file: '/home/homeassistant/.homeassistant/www/entrada.gif'
+
+
+#CUANDO SE ABRE LA VENTANA Y NO ESTAMOS NI BEL NI YO MANDA TELEGRAM CON FOTO.
+- alias: Apertura Ventana
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001012257
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Se abrio la ventana.'
+      data:
+        photo:
+          url: !secret camb_url
+          caption: 'Se abrio la ventana.'
+
+#CUANDO SE CIERRA LA VENTANA Y NO ESTAMOS NI BEL NI YO MANDA TELEGRAM CON FOTO.
+- alias: Cierre Ventana
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001012257
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Se cerro la ventana.'
+      data:
+        photo:
+          url: !secret camb_url
+          caption: 'Se cerro la ventana.'
+
+- alias: Apertura Puerta
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001012263
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    - delay: 0:05
+    - service: notify.telegram_gus
+      data:
+        title: 'Alerta:'
+        message: 'Se abrio la puerta Ppal.'
+        data:
+          photo:
+            url: !secret came_url
+            caption: 'Se abrio la puerta Ppal.'
+    - service: notify.telegram_bel
+      data:
+        title: 'Alerta:'
+        message: 'Se abrio la puerta Ppal.'
+        data:
+          photo:
+            url: !secret came_url
+            caption: 'Se abrio la puerta Ppal.'
+
+- alias: Despertar a Caro
+  trigger:
+    - platform: time
+      at: '06:45:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ is_state("calendar.feriados_argentina", "off") }}'
+#      entity_id: calendar.feriados_argentina
+#      state: off
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    service: script.turn_on
+    entity_id: script.despertar_caro
+
+#- alias: Cuando Me voy Camaras
+#  trigger:
+#    - platform: state
+#      entity_id: device_tracker.wmxncdlp_gustavo
+#      from: home
+#      to: not_home
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.yawcams
+
+#- alias: Cuando Llego Camaras
+#  trigger:
+#    - platform: state
+#      entity_id: device_tracker.wmxncdlp_gustavo
+#      from: not_home
+#      to: home
+#  action:
+#    service: switch.turn_off
+#    entity_id: switch.yawcams
+
+- alias: Cuando Llego a casa Musica
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      from: not_home
+      to: home
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: media_player.select_source
+    data:
+      entity_id: media_player.spotify
+      source: CENTER
+
+- alias: Cuando Llego al trabajo
+  trigger:
+    - platform: state
+      entity_id: device_tracker.gusplus
+      to: trabajo
+  action:
+    service: media_player.select_source
+    data:
+      entity_id: media_player.spotify
+      source: SAC230999
+
+# Cuando llega Belen
+- alias: llego belen
+  trigger:
+    - platform: state
+      entity_id: group.beldetail
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Belen llego a casa.'
+
+# Cuando llega Gus
+- alias: llego gus
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: notify.telegram_bel
+    data_template:
+      title: 'Alerta:'
+      message: 'Gustavo llego a casa.'
+
+# Cuando se va Gus
+- alias: se fue gus
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: notify.telegram_bel
+    data_template:
+      title: 'Alerta:'
+      message: 'Gustavo se fue de casa.'
+
+# Cuando se va Belen
+- alias: se fue belen
+  trigger:
+    - platform: state
+      entity_id: group.beldetail
+      to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Belen se fue de casa.'
+
+# Cuando llega Paulina
+- alias: llego paulina
+  trigger:
+    - platform: state
+      entity_id: device_tracker.paulina
+      to: 'home'
+  action:
+    - service: notify.telegram_bel
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina llego a casa.'
+    - service: notify.telegram_gus
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina llego a casa.'
+
+# Cuando se va Paulina
+- alias: se fue paulina
+  trigger:
+    - platform: state
+      entity_id: device_tracker.paulina
+      to: 'not_home'
+  action:
+    - service: notify.telegram_bel
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina se fue de casa.'
+    - service: notify.telegram_gus
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina se fue de casa.'
+
