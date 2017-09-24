@@ -1,0 +1,39 @@
+#################################################################
+## Automatizaciones cuando Paulina esta en casa
+#################################################################
+
+##########################################################
+## Se fue
+##########################################################
+- alias: se fue paulina
+  trigger:
+    - platform: state
+      entity_id: device_tracker.paulina
+      to: 'not_home'
+  action:
+    - service: notify.telegram_bel
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina se fue de casa.'
+    - service: notify.telegram_gus
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina se fue de casa.'
+
+##########################################################
+## Llego
+##########################################################
+- alias: llego paulina
+  trigger:
+    - platform: state
+      entity_id: device_tracker.paulina
+      to: 'home'
+  action:
+    - service: notify.telegram_bel
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina llego a casa.'
+    - service: notify.telegram_gus
+      data_template:
+        title: 'Alerta:'
+        message: 'Paulina llego a casa.'

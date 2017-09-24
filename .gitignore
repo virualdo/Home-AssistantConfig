@@ -14,3 +14,5 @@ typescript
 custom_components
 **/salida
 **/dropbox
+known_devices.yaml
+google_calendars.yaml

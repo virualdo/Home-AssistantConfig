@@ -1,0 +1,1 @@
+/home/homeassistant/.homeassistant/miio/node_modules/.bin/miio --control 192.168.1.123 --method set_power --params '["off"]'

@@ -1,1 +1,1 @@
-  reiniciarhass: /bin/bash /home/homeassistant/.homeassistant/scripts/restarthass.sh
+  reiniciarhass: sudo /home/homeassistant/.homeassistant/scripts/restarthass.sh

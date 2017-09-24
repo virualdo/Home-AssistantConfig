@@ -12,7 +12,7 @@ homeassistant:
 #introduction:
 
 logger:
-  default: info
+  default: critical
   logs:
     homeassistant.components: info
 
@@ -67,11 +67,11 @@ telegram_bot:
     - !secret telegram_chat_gus
 
 group: !include groups.yaml
-#automation: !include_dir_merge_list automation
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation
+#automation: !include automations.yaml
 
 
-xiaomi:
+xiaomi_aqara:
   gateways:
     - sid: !secret xiaomi_sid
       key: !secret xiaomi_key
@@ -112,6 +112,7 @@ device_tracker:
     host: 192.168.1.1
     username: !secret ddwrt_usr
     password: !secret ddwrt_pwd
+    interval_seconds: 10
   - platform: bluetooth_tracker
 #  - platform: bluetooth_le_tracker
   - platform: gplus

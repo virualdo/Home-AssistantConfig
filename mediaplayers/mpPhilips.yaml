@@ -1,0 +1,3 @@
+  - platform: philips_js
+    host: 192.168.1.145
+    name: Tele Philips

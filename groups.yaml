@@ -3,13 +3,22 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - group.living
-    - group.comedor
-    - group.cocina
-    - group.pasillo
-    - group.family
-    - group.visitantes
-    - group.banio
+    - group.luces1
+    - group.luces2
+    - group.presencia
+    - group.apertura
+    - group.valores
+#    - group.radio    
+#     - group.GrLiving
+#     - group.GrCocinaPasillo
+#    - group.living
+#    - group.comedor
+#    - group.cocina
+#    - group.pasillo
+#    - group.family
+#    - group.visitantes
+#    - group.banio
+#    - group.HabitacionBG
 
 #TABS
 familytab:
@@ -20,6 +29,7 @@ familytab:
     - group.gusdetail
     - group.beldetail
     - device_tracker.paulina
+    - camera.camBel
 
 sensortab:
   name: Sensores
@@ -42,13 +52,29 @@ mediatab:
   view: yes
   icon: mdi:play
   entities:
-    - media_player.spotify
+    - group.tvs
+    - group.pelis
+    - group.musica
+
+pelis:
+  name: Pelis y Series
+  entities:
     - media_player.kodi
     - media_player.plex
+
+musica:
+  name: Musica
+  entities:
+    - group.radio
+    - media_player.spotify
+
+tvs:
+  name: Teles
+  entities:
     - media_player.tele_bg
     - media_player.tele_caro
     - media_player.tele_living
-    - group.radio
+    - media_player.tele_philips
 
 configurationtab:
   name: Configuration
@@ -97,7 +123,7 @@ cameratab:
     - group.camaras1
     - group.camaras2
     #- group.control_camaras
-    #- group.controlar_kuro
+
 
 hastatus:
   name: "Home Assistant Host Status"
@@ -117,18 +143,13 @@ Living:
   - sensor.tele_living_entrada
   - sensor.temperature_158d00010e1a8a
   - binary_sensor.door_window_sensor_158d0001012263
-  - scene.netflix
 
 Comedor:
-  - light.luz_biblioteca
-  - light.luz_comedor
-  - switch.luz_tele
   - switch.aspiradora
   - switch.aire_living
   - switch.ctl_tv_lg
 
 Pasillo:
-  - binary_sensor.door_window_sensor_158d0001012257
   - binary_sensor.motion_sensor_158d0000e7c149
   - light.luz_pasillo
 
@@ -138,8 +159,11 @@ Cocina:
   - light.gateway_light_f0b4299aee74
 
 Banio:
-  - binary_sensor.motion_sensor_158d00011039fc
+  - binary_sensor.motion_sensor_158d00010d4be4
   - switch.plug_158d00012f54bf
+
+HabitacionBG:
+  - binary_sensor.motion_sensor_158d00011039fc
 
 Control Kuro:
   entities:
@@ -155,6 +179,7 @@ Camaras1:
 Camaras2:
   entities:
     - camera.CamKro
+    - group.control_kuro
 #    - camera.CamSillon
 #    - camera.CamBalcon
 
@@ -164,3 +189,71 @@ Radio:
   - input_select.radio_station
   - input_select.chromecast_radio
   - script.poner_radio
+
+GrLiving:
+  name: Living Completo
+  entities:
+  - camera.CamLiving
+  - binary_sensor.door_window_sensor_158d0001012257
+  - binary_sensor.motion_sensor_158d0001103866
+  - light.luz_living
+  - sensor.tele_living_entrada
+  - sensor.temperature_158d00010e1a8a
+  - switch.luz_tele
+  - light.luz_biblioteca
+
+GrCocinaPasillo:
+  name: Pasillo y Cocina
+  entities:
+  - camera.CamEntrada
+  - binary_sensor.motion_sensor_158d0001103866
+  - light.luz_pasillo
+  - binary_sensor.motion_sensor_158d0000fc1838
+  - switch.plug_158d0001011d82
+  - light.gateway_light_f0b4299aee74
+  - light.luz_comedor
+
+luces1:
+  name: Luces Altas
+  entities:
+  - light.luz_pasillo
+  - light.luz_comedor
+  - light.luz_living
+  - light.luz_kro
+  - light.luz_bg
+  - switch.plug_158d00012f54bf
+
+luces2:
+  name: Luces Bajas
+  entities:
+  - light.gateway_light_f0b4299aee74
+  - switch.plug_158d0001011d82
+  - switch.luz_tele
+  - light.luz_biblioteca
+  - light.luz_velador
+  - switch.zapatilla_caro
+
+presencia:
+  name: Presencia
+  entities:
+  - binary_sensor.motion_sensor_158d0000fc1838
+  - binary_sensor.motion_sensor_158d0001103866
+  - binary_sensor.motion_sensor_158d00010d4be4
+  - binary_sensor.motion_sensor_158d00011039fc
+  - binary_sensor.motion_sensor_158d0000fbf0e1
+  - binary_sensor.motion_sensor_158d0000e7c149
+  - binary_sensor.motion_sensor_158d000121aa1c
+
+apertura:
+  name: Apertura
+  entities:
+  - binary_sensor.door_window_sensor_158d0001012257
+  - binary_sensor.door_window_sensor_158d0001012263
+  - binary_sensor.door_window_sensor_158d00016c8531
+
+valores:
+  name: Valores
+  entities:
+  - sensor.temperature_158d00010e1a8a
+  - sensor.humidity_158d00010e1a8a
+#  - switch.plug_158d00012f54bf.power_consumed

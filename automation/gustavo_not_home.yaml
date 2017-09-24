@@ -1,0 +1,74 @@
+#################################################################
+## Gustavo se va de casa Automations
+#################################################################
+
+##########################################################
+## Se va y queda Belen
+##########################################################
+- alias: Gustavo nothome Belen home
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      from: 'home'
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: group.beldetail
+      state: 'home'
+  action:
+    - service: media_player.media_stop
+      entity_id: media_player.spotify
+
+##########################################################
+## Se va y no esta belen
+##########################################################
+- alias: Gustavo nothome Belen nothome
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    service: notify.telegram_bel
+    data_template:
+      title: 'Alerta:'
+      message: 'Gustavo se fue de casa.'
+
+##########################################################
+## llega belen
+##########################################################
+- alias: llego belen
+  trigger:
+    - platform: state
+      entity_id: group.beldetail
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Belen llego a casa.'
+
+##########################################################
+## llego al trabajo
+##########################################################
+- alias: Cuando Llego al trabajo
+  trigger:
+    - platform: state
+      entity_id: device_tracker.gusplus
+      to: trabajo
+  action:
+    service: media_player.select_source
+    data:
+      entity_id: media_player.spotify
+      source: !secret spotify_trabajo

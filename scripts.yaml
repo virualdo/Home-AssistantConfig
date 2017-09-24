@@ -35,7 +35,7 @@ luz_centralita_disco:
 
 xiaomi_ringtone:
   sequence:
-    - service: xiaomi.play_ringtone
+    - service: xiaomi_aqara.play_ringtone
       data_template:
         gw_sid: f0b4299aee74
         ringtone_vol: "{{ volume|default(states('input_slider.xiaomi_ringtone_volume')|int(100)) }}"
@@ -74,38 +74,6 @@ xiaomi_ringtone:
               10
             {% endif %}
 
-flash_living:
-  alias: Flash Living On
-  sequence:
-    - alias: Light Living On
-      service: homeassistant.turn_on
-      data:
-        entity_id: light.luz_living
-    - delay:
-        # time for flash light on
-        milliseconds: 500
-    - alias: Light Living Off
-      service: homeassistant.turn_off
-      data:
-        entity_id: light.luz_living
-    - delay:
-        # time for flash light off
-        milliseconds: 500
-    - alias: loop_Living
-      service: script.turn_on
-      data:
-        entity_id: script.flash_living
-
-flash_living2:
-  sequence:
-    - alias: Llamar a 1
-      service: script.turn_off
-      data:
-        entity_id: script.flash_living
-    - alias: Llamar a 1 a
-      service: script.turn_on
-      data:
-        entity_id: script.flash_living
 
 luces_flash:
   sequence:
@@ -290,30 +258,60 @@ poner_radio:
 despertar_caro:
   alias: Despertar con la tele a Caro
   sequence:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.zapatilla_caro
+  - delay: '00:00:30'
   - service: media_player.turn_on
     data:
       entity_id: media_player.tele_caro
   - service: media_player.volume_set
     data:
       entity_id: media_player.tele_caro
-      volume_level: '0.99'
+      volume_level: '0.59'
   - service: media_player.play_media
     data:
       entity_id: media_player.tele_caro
       media_content_id: https://previews.123rf.com/images/amalga/amalga1512/amalga151200013/50640552-La-linda-chica-se-despierta-Ilustraci-n-vectorial-de-dibujos-animados-Aislado-en-blanco--Foto-de-archivo.jpg
       media_content_type: image/jpeg
-  - delay: '00:00:30'
+  - delay: '00:00:20'
   - service: tts.google_say
     entity_id: media_player.tele_caro
     data:
       message: 'Buenos dias Carolina, arriba que es hora de despertarse.'
       language: es
-  - delay: '00:00:30'
+  - delay: '00:00:20'
   - service: media_player.play_media
     data:
       entity_id: media_player.tele_caro
       media_content_id: https://previews.123rf.com/images/amalga/amalga1512/amalga151200013/50640552-La-linda-chica-se-despierta-Ilustraci-n-vectorial-de-dibujos-animados-Aislado-en-blanco--Foto-de-archivo.jpg
       media_content_type: image/jpeg
+  - delay: '00:00:20'
+  - service: tts.google_say
+    entity_id: media_player.tele_caro
+    data:
+      message: 'Arriba Caro, '#hora de vestirse, afuera esta {% if states('sensor.dark_sky_apparent_temperature') | int < 11 %}muy frio{% elif states('sensor.dark_sky_apparent_temperature') | int < 16 %}fresco{% elif states('sensor.dark_sky_apparent_temperature') | int < 21 %}lindo{% elif states('sensor.dark_sky_apparent_temperature') | int > 20 %}Caluroso{% endif %}{% if states('sensor.dark_sky_precip_probability') | float > 50 %} y es probable que llueva{% endif %}.'
+      language: es
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.tele_caro
+      media_content_id: https://previews.123rf.com/images/amalga/amalga1512/amalga151200013/50640552-La-linda-chica-se-despierta-Ilustraci-n-vectorial-de-dibujos-animados-Aislado-en-blanco--Foto-de-archivo.jpg
+      media_content_type: image/jpeg
+
+probar_tts_templates:
+  alias: probar tts templates
+  sequence:
+  - service: media_player.media_pause
+    data:
+      entity_id: media_player.spotify
+  - service: tts.google_say
+    entity_id: media_player.kodi
+    data_template:
+      message: "La temperatura es {{ states.sensor.dark_sky_temperature.state }}."
+      language: es
+  - service: media_player.media_play
+    data:
+      entity_id: media_player.spotify
 
 #hacer_gif_entrada:
 #  alias: Hacer gif animado con x imagenes por segundo de la camara de la entrada

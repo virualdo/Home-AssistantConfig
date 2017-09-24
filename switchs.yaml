@@ -5,8 +5,13 @@
         command_off: !secret sw_cam_ent_off
 #        value_template: '{{ value != "1" }}'
         friendly_name: Interruptor Camara Entrada
-
-
+      zapatilla_caro:
+        command_on: /bin/bash /home/homeassistant/.homeassistant/scripts/zapaCaroPrender.sh
+        command_off: /bin/bash /home/homeassistant/.homeassistant/scripts/zapaCaroApagar.sh
+        command_state: /bin/bash /home/homeassistant/.homeassistant/scripts/zapaCaroEstado.sh
+#/home/homeassistant/.homeassistant/miio/node_modules/.bin/miio --control 192.168.1.123 --method get_prop --params '["power"]'
+#        value_template: '{{ value | replace("INFO","") | replace("Attempting to control 192.168.1.123","") | replace("Got result:","") | replace("[","") | replace("on","1") | replace("off","0") | replace("]","") | replace(" ","") }}'
+#53433db5f73dea7975d556be54b0dd36
   - platform: chuangmi_ir
     name: 'livingroomirremote'
     host: !secret cir1_ip
@@ -31,3 +36,19 @@
         name: 'ctl_tv_lg'
         command_on: 'Z6UFABgBAACuMQAA8FIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAA='
         command_off: 'Z6UFABgBAACuMQAA8FIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAA='
+
+  - platform: chuangmi_ir
+    name: 'kroirremote'
+    host: 192.168.1.140
+    token: 53433db5f73dea7975d556be54b0dd36
+    switches:
+      telecarovol:
+        name: 'ctl_tv_sam_vol'
+        command_on: 'Z6XLAOgBAACGAgAAVQYAAFwRAADjEQAA3LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0ISEhAQEBAQEhISEBAQEBASEhIQEBAQEBAQEBISEhISFRNCEhIQEBAQEBISEhAQEBAQEhISEBAQEBAQEBASEhISEhUTQhISEBAQEBASEhIQEBAQEBISEhAQEBAQEBAQEhISEhIQE'
+        command_off: 'Z6UPAegBAACHAgAAUwYAAFsRAADkEQAA3LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0ISEhAQEBAQEhISEBAQEBASEhASEBAQEBAQEhASEhISFRNCEhIQEBAQEBISEhAQEBAQEhIQEhAQEBAQEBIQEhISEhUTQhISEBAQEBASEhIQEBAQEBISEBIQEBAQEBASEBISEhIVE0ISEhAQEBAQEhISEBAQEBASEhASEBAQEBAQEhASEhISEB'
+      telecaroonoff:
+        name: 'ctl_tv_sam'
+        command_on: 'Z6XLAP4BAABxAgAAZwYAAHgRAADHEQAA3LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0ISEhAQEBAQEhISEBAQEBAQEhAQEBAQEBIQEhISEhISFRNCEhIQEBAQEBISEhAQEBAQEBIQEBAQEBASEBISEhISEhUTQhISEBAQEBASEhIQEBAQEBASEBAQEBAQEhASEhISEhIQE'
+        command_off: 'Z6XLAP4BAABxAgAAZwYAAHgRAADHEQAA3LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0ISEhAQEBAQEhISEBAQEBAQEhAQEBAQEBIQEhISEhISFRNCEhIQEBAQEBISEhAQEBAQEBIQEBAQEBASEBISEhISEhUTQhISEBAQEBASEhIQEBAQEBASEBAQEBAQEhASEhISEhIQE'
+
+        

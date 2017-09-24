@@ -1,0 +1,73 @@
+#################################################################
+## Casa sola Automations
+#################################################################
+
+##########################################################
+## Se detecta movimiento en el pasillo o cocina
+##########################################################
+- alias: Movimiento Cocina o Pasillo
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000e7c149
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000fc1838
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
+  action:
+    - service: shell_command.hacervideoentrada
+
+##########################################################
+## Se detecta movimiento en el living
+##########################################################
+- alias: Movimiento Living
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001103866
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_living.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_living.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
+  action:
+    - service: shell_command.hacervideobalcon
+
+##########################################################
+## Se abre la puerta de casa
+##########################################################
+- alias: Apertura Puerta con video
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001012263
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
+  action:
+    - delay: '00:00:01'
+    - service: telegram_bot.send_photo
+      data:
+        target: [ !secret telegram_chat_bel , !secret telegram_chat_gus ]
+        url: !secret came_url
+        caption: 'Se abrio la puerta Ppal.'
+    - delay: '00:04:00'
+    - service: telegram_bot.send_document
+      data:
+        target: [ !secret telegram_chat_bel , !secret telegram_chat_gus ]
+        file: '/home/homeassistant/.homeassistant/www/entrada.mp4'

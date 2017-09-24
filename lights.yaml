@@ -14,3 +14,12 @@
       !secret lliv_ip:
          name: Luz Living
          transition: 600
+      !secret lkro_ip:
+         name: Luz Kro
+         transition: 600
+      !secret lbg_ip:
+         name: Luz BG
+         transition: 600
+      !secret lvel_ip:
+         name: Luz Velador
+         transition: 600

@@ -1,0 +1,68 @@
+#################################################################
+## Belen se va de casa Automations
+#################################################################
+
+##########################################################
+## Se va y queda Gustavo
+##########################################################
+- alias: Belen nothome Gustavo home
+
+  trigger:
+    - platform: state
+      entity_id: group.beldetail
+      from: 'home'
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: group.gusdetail
+      state: 'home'
+  action:
+    - service: media_player.media_play
+      entity_id: media_player.spotify
+
+##########################################################
+## Se va y no esta gustavo
+##########################################################
+- alias: Belen nothome Gustavo nothome
+  trigger:
+    - platform: state
+      entity_id: group.beldetail
+      to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gusdetail
+      state: not_home
+  action:
+    service: notify.telegram_gus
+    data_template:
+      title: 'Alerta:'
+      message: 'Belen se fue de casa.'
+
+##########################################################
+## llega gustavo
+##########################################################
+- alias: llego gus
+  trigger:
+    - platform: state
+      entity_id: group.gusdetail
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.beldetail
+      state: not_home
+  action:
+    - service: notify.telegram_bel
+      data_template:
+        title: 'Alerta:'
+        message: 'Gustavo llego a casa.'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: !secret spotify_casa
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify

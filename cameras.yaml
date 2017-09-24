@@ -7,3 +7,7 @@
   - platform: generic
     still_image_url: !secret camk_url
     name: CamKro
+  - platform: generic
+    name: camBel
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.belplus.attributes.latitude }},{{ states.device_tracker.belplus.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:red%7Clabel:B%7C{{ states.device_tracker.belplus.attributes.latitude }},{{ states.device_tracker.belplus.attributes.longitude }}&markers=color:blue%7Clabel:G%7C{{ states.device_tracker.gusplus.attributes.latitude }},{{ states.device_tracker.gusplus.attributes.longitude }}
+    limit_refetch_to_url_change: true

@@ -1,26 +1,63 @@
-- alias: Apertura prueba
+- alias: Movimiento Cocina o Pasillo
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000e7c149
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0000fc1838
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
+  action:
+    - service: shell_command.hacervideoentrada
+
+- alias: Movimiento Living
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001103866
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_living.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_living.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
+  action:
+    - service: shell_command.hacervideobalcon
+
+- alias: Apertura Puerta con video
   trigger:
     - platform: state
       entity_id: binary_sensor.door_window_sensor_158d0001012263
       to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: not_home
+      - condition: template
+        value_template: '{% if states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered  %} {{(as_timestamp(now())-as_timestamp(states.automation.movimiento_cocina_o_pasillo.attributes.last_triggered)) > 120 }}  {% else %}  true {% endif %}'
   action:
-    - service: shell_command.hacergifentrada
     - delay: '00:00:01'
-    - service: notify.telegram_gus
+    - service: telegram_bot.send_photo
       data:
-        title: 'Alerta:'
-        message: 'Se abrio la puerta Ppal.'
-        data:
-          photo:
-            url: !secret came_url
-            caption: 'Se abrio la puerta Ppal.'
-    - delay: '00:01:30'
-    - service: notify.telegram_gus
+        target: [ !secret telegram_chat_bel , !secret telegram_chat_gus ]
+        url: !secret came_url
+        caption: 'Se abrio la puerta Ppal.'
+    - delay: '00:04:00'
+    - service: telegram_bot.send_document
       data:
-        message: 'Se abrio la puerta Ppal.'
-        data:
-          document:
-            file: '/home/homeassistant/.homeassistant/www/entrada.gif'
+        target: [ !secret telegram_chat_bel , !secret telegram_chat_gus ]
+        file: '/home/homeassistant/.homeassistant/www/entrada.mp4'
 
 
 #CUANDO SE ABRE LA VENTANA Y NO ESTAMOS NI BEL NI YO MANDA TELEGRAM CON FOTO.
@@ -32,12 +69,12 @@
   condition:
     condition: and
     conditions:
-    - condition: state
-      entity_id: group.gusdetail
-      state: not_home
-    - condition: state
-      entity_id: group.beldetail
-      state: not_home
+      - condition: state
+        entity_id: group.gusdetail
+        state: not_home
+      - condition: state
+        entity_id: group.beldetail
+        state: not_home
   action:
     service: notify.telegram_gus
     data_template:
@@ -73,43 +110,43 @@
           url: !secret camb_url
           caption: 'Se cerro la ventana.'
 
-- alias: Apertura Puerta
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001012263
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: group.gusdetail
-      state: not_home
-    - condition: state
-      entity_id: group.beldetail
-      state: not_home
-  action:
-    - delay: 0:05
-    - service: notify.telegram_gus
-      data:
-        title: 'Alerta:'
-        message: 'Se abrio la puerta Ppal.'
-        data:
-          photo:
-            url: !secret came_url
-            caption: 'Se abrio la puerta Ppal.'
-    - service: notify.telegram_bel
-      data:
-        title: 'Alerta:'
-        message: 'Se abrio la puerta Ppal.'
-        data:
-          photo:
-            url: !secret came_url
-            caption: 'Se abrio la puerta Ppal.'
+#- alias: Apertura Puerta
+#  trigger:
+#    - platform: state
+#      entity_id: binary_sensor.door_window_sensor_158d0001012263
+#      to: 'on'
+#  condition:
+#    condition: and
+#    conditions:
+#    - condition: state
+#      entity_id: group.gusdetail
+#      state: not_home
+#    - condition: state
+#      entity_id: group.beldetail
+#      state: not_home
+#  action:
+#    - delay: 0:05
+#    - service: notify.telegram_gus
+#      data:
+#        title: 'Alerta:'
+#        message: 'Se abrio la puerta Ppal.'
+#        data:
+#          photo:
+#            url: !secret came_url
+#            caption: 'Se abrio la puerta Ppal.'
+#    - service: notify.telegram_bel
+#      data:
+#        title: 'Alerta:'
+#        message: 'Se abrio la puerta Ppal.'
+#        data:
+#          photo:
+#            url: !secret came_url
+#            caption: 'Se abrio la puerta Ppal.'
 
 - alias: Despertar a Caro
   trigger:
     - platform: time
-      at: '06:45:00'
+      at: '06:40:00'
   condition:
     condition: and
     conditions:
@@ -161,10 +198,13 @@
       entity_id: group.beldetail
       state: not_home
   action:
-    service: media_player.select_source
-    data:
-      entity_id: media_player.spotify
-      source: CENTER
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: CENTER
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify
 
 - alias: Cuando Llego al trabajo
   trigger:
@@ -281,3 +321,30 @@
         title: 'Alerta:'
         message: 'Paulina se fue de casa.'
 
+#- alias: prueba_tracker_router
+#  trigger:
+#    - platform: state
+#      entity_id: device_tracker.gustavo
+#      to: 'home'
+#    - platform: state
+#      entity_id: device_tracker.gustavo
+#      to: 'not_home'
+#  action:
+#    - service: notify.telegram_gus
+#      data_template:
+#        title: 'Alerta:'
+#        message: 'gustavo router.'
+
+#- alias: prueba_tracker_gplus
+#  trigger:
+#    - platform: state
+#      entity_id: device_tracker.gusplus
+#      to: 'home'
+#    - platform: state
+#      entity_id: device_tracker.gusplus
+#      to: 'not_home'
+#  action:
+#    - service: notify.telegram_gus
+#      data_template:
+#        title: 'Alerta:'
+#        message: 'gustavo gplus.'

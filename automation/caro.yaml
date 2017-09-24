@@ -1,0 +1,26 @@
+#################################################################
+## Automatizaciones para ayudar a caro
+#################################################################
+
+##########################################################
+## Despertar para ir al cole
+##########################################################
+- alias: Despertar a Caro
+  trigger:
+    - platform: time
+      at: '06:40:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ is_state("calendar.feriados_argentina", "off") }}'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: script.turn_on
+      entity_id: script.despertar_caro
